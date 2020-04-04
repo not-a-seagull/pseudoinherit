@@ -8,6 +8,8 @@
  * more information.
  */
 
+//! This crate defines the pseudo! macro for the pseudoinherit crate.
+
 mod base_trait;
 mod base_derive;
 mod derive_trait;
@@ -17,7 +19,7 @@ use proc_macro::TokenStream;
 use proc_macro2::Span;
 use quote::{format_ident, quote};
 use structure::DeriveStruct;
-use syn::{token::Crate, Field, parse_macro_input, Visibility, VisCrate};
+use syn::{token::Pub, Field, parse_macro_input, Visibility, VisPublic};
 
 /// Takes one struct (and, optionally, one impl block) within and creates an inheritable class.
 #[proc_macro]
@@ -45,14 +47,14 @@ pub fn pseudo(ts: TokenStream) -> TokenStream {
     };
 
     let mut sdp_fields = sd_fields.clone();
-    sdp_fields.iter_mut().for_each(|f| f.vis = Visibility::Crate(
-        VisCrate { crate_token: Crate { span: Span::call_site() } }
+    sdp_fields.iter_mut().for_each(|f| f.vis = Visibility::Public(
+        VisPublic { pub_token: Pub { span: Span::call_site() } }
     ));
     let sdp_fields: Vec<&Field> = sdp_fields.iter().collect();
 
     // the properties of the current class
     let sdp = quote! {
-        #sd_vis #sdp_name {
+        #sd_vis struct #sdp_name {
             #(#sdp_fields),*
             ,
             #sdp_base_class_ref
@@ -61,7 +63,7 @@ pub fn pseudo(ts: TokenStream) -> TokenStream {
 
     // an instance of the class
     let sd_struct = quote! {
-        #sd_vis #sd_name {
+        #sd_vis struct #sd_name {
             properties: #sdp_name
         }
     }; 

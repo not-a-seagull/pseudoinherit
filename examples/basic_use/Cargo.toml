@@ -1,14 +1,8 @@
 [package]
-name = "pseudo_derive"
+name = "basic_use"
 version = "0.1.0"
 authors = ["not_a_seagull <jtnunley01@gmail.com>"]
 edition = "2018"
 
-[lib]
-path = "src/lib.rs"
-proc-macro = true
-
 [dependencies]
-proc-macro2 = "1"
-quote = "1"
-syn = "1"
+pseudoinherit = { path = "../../" }

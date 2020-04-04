@@ -25,16 +25,23 @@ pub struct DeriveStruct {
 
 impl Parse for DeriveStruct {
     fn parse(input: ParseStream) -> Result<Self> {
+        let attrs = input.call(Attribute::parse_outer)?;
+        let vis = input.parse()?;
+        let struct_token = input.parse().expect("here1");
+        let name = input.parse()?;
+        let base_class = match input.parse() {
+            Ok(i) => Some((i, input.parse()?)),
+            Err(_) => None,
+        };
+        let fields = input.parse()?;
+
         Ok(Self {
-            attrs: input.call(Attribute::parse_outer)?,
-            vis: input.parse()?,
-            struct_token: input.parse()?,
-            name: input.parse()?,
-            base_class: match input.parse() {
-                Ok(i) => Some((i, input.parse()?)),
-                Err(_) => None,
-            },
-            fields: Fields::Named(input.parse()?),
+            attrs,
+            vis,
+            struct_token,
+            name,
+            base_class,
+            fields: Fields::Named(fields),
         })
     }
 }

@@ -28,11 +28,11 @@ pub fn implement_derive(sd_name: &Ident, sdp_name: &Ident, sdt_name: &Ident) -> 
 
         impl<T: pseudoinherit::Derives<#sd_name>> #sdt_name for T {
             fn get_props(&self) -> &#sdp_name {
-                <#sdt_name>::get_props(self)
+                pseudoinherit::Derives::<#sd_name>::get_props(self)
             }
 
             fn get_props_mut(&mut self) -> &mut #sdp_name {
-                <#sdt_name>::get_props_mut(self)
+                pseudoinherit::Derives::<#sd_name>::get_props_mut(self)
             }
         }
     } 
