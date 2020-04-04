@@ -1,6 +1,6 @@
 /* 
- * psuedo_derive/src/base_trait.rs - Create the base trait for inheritance from a Struct. 
- * psuedoinherit - Fake inheritance in Rust.
+ * pseudo_derive/src/base_trait.rs - Create the base trait for inheritance from a Struct. 
+ * pseudoinherit - Fake inheritance in Rust.
  * 
  * This software may be licensed under the terms of either the MIT License
  * (can be found in LICENSE-MIT) or the Apache 2.0 License (can be found in

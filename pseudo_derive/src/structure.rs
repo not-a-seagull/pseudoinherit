@@ -1,6 +1,6 @@
 /* 
- * psuedo_derive/src/structure.rs - A structure definition for the psuedo! macro.
- * psuedoinherit - Fake inheritance in Rust.
+ * pseudo_derive/src/structure.rs - A structure definition for the pseudo! macro.
+ * pseudoinherit - Fake inheritance in Rust.
  * 
  * This software may be licensed under the terms of either the MIT License
  * (can be found in LICENSE-MIT) or the Apache 2.0 License (can be found in

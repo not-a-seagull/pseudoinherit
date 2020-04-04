@@ -1,6 +1,6 @@
 /* 
- * psuedo_derive/src/lib.rs - Define the psuedo! macro, which creates "fake inheritance".
- * psuedoinherit - Fake inheritance in Rust.
+ * pseudo_derive/src/lib.rs - Define the pseudo! macro, which creates "fake inheritance".
+ * pseudoinherit - Fake inheritance in Rust.
  * 
  * This software may be licensed under the terms of either the MIT License
  * (can be found in LICENSE-MIT) or the Apache 2.0 License (can be found in
@@ -21,7 +21,7 @@ use syn::{token::Crate, Field, parse_macro_input, Visibility, VisCrate};
 
 /// Takes one struct (and, optionally, one impl block) within and creates an inheritable class.
 #[proc_macro]
-pub fn psuedo(ts: TokenStream) -> TokenStream {
+pub fn pseudo(ts: TokenStream) -> TokenStream {
     let s_defn = parse_macro_input!(ts as DeriveStruct);
    
     // various useful variables 

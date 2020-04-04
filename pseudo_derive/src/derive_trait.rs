@@ -1,6 +1,6 @@
 /* 
- * psuedo_derive/src/derive_trait.rs - Implementation for Derivable.
- * psuedoinherit - Fake inheritance in Rust.
+ * pseudo_derive/src/derive_trait.rs - Implementation for Derivable.
+ * pseudoinherit - Fake inheritance in Rust.
  * 
  * This software may be licensed under the terms of either the MIT License
  * (can be found in LICENSE-MIT) or the Apache 2.0 License (can be found in
@@ -14,7 +14,7 @@ use syn::Ident;
 
 pub fn implement_derive(sd_name: &Ident, sdp_name: &Ident, sdt_name: &Ident) -> TokenStream {
     quote! {
-        impl psuedoinherit::Derivable for #sd_name {
+        impl pseudoinherit::Derivable for #sd_name {
             type Properties = #sdp_name;
 
             fn get_props(&self) -> &#sdp_name {
@@ -26,7 +26,7 @@ pub fn implement_derive(sd_name: &Ident, sdp_name: &Ident, sdt_name: &Ident) -> 
             }
         }
 
-        impl<T: psuedoinherit::Derives<#sd_name>> #sdt_name for T {
+        impl<T: pseudoinherit::Derives<#sd_name>> #sdt_name for T {
             fn get_props(&self) -> &#sdp_name {
                 <#sdt_name>::get_props(self)
             }
